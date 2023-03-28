@@ -1,6 +1,8 @@
 import { db } from "@/server/firebase"
 import { collection, addDoc } from "firebase/firestore"
 import { useState } from "react";
+import styles from '../../styles/Form.module.css';
+
 export default function Form(){
 
     const [contact, setNewContact] = useState({
@@ -26,12 +28,12 @@ export default function Form(){
             console.log(error);
         }
     };
-    return(<div>
-        <p>form contactos</p>
-        <input placeholder="name" onChange={(e)=> handleChange(e)} id='name'></input>
-        <input placeholder="lastmName" onChange={(e)=> handleChange(e)} id='lastName'></input>
-        <input placeholder="age" onChange={(e)=> handleChange(e)} id='age'></input>
-        <input placeholder="address" onChange={(e)=> handleChange(e)} id='address'></input>
-        <button onClick={()=>handleClick()}>Send data</button>
+    return(<div className={styles.form}>
+        <p>New contact</p>
+        <input placeholder="name" onChange={(e)=> handleChange(e)} id='name' className={styles.formInput}></input>
+        <input placeholder="lastmName" onChange={(e)=> handleChange(e)} id='lastName' className={styles.formInput}></input>
+        <input placeholder="age" onChange={(e)=> handleChange(e)} id='age' className={styles.formInput}></input>
+        <input placeholder="address" onChange={(e)=> handleChange(e)} id='address' className={styles.formInput}></input>
+        <button onClick={()=>handleClick()} className={styles.formSubmit}>Send data</button>
     </div>)
 }
