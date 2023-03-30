@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+
 const firebaseConfig = {
   // Aquí debes agregar la configuración de tu proyecto Firebase
   apiKey: "AIzaSyAI-q22-5pAGIRXQJvdPbIbg_bEq2x36gc",
@@ -15,7 +16,10 @@ const firebaseConfig = {
 
 
 // Initialize Cloud Firestore and get a reference to the service
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
+/**
+* @constant db: Tengo que importar la base de datos aunque depsues no la temrine usando epxlicitamente en el codigo
+ */
 export const db = getFirestore(app);
 
 

@@ -1,6 +1,7 @@
 import Modal from 'react-modal';
-
-
+import { db } from '@/server/firebase';
+import { doc, deleteDoc} from 'firebase/firestore';
+import { useRouter } from 'next/router';
 Modal.setAppElement('#__next');
 
 const customStyles = {
@@ -14,10 +15,17 @@ const customStyles = {
     }
   };
 
-export default function DeleteCardModal({isOpen, setIsOpenModal}){
+export default function DeleteCardModal({isOpen, setIsOpenModal, contactId}){
 
-  function handleDelete(){
-    setIsOpenModal(false);
+  const router = useRouter();
+
+  async function handleDelete(){
+    try {
+      await deleteDoc(doc(db, 'contacts', contactId));
+      router.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return(<Modal 
@@ -26,7 +34,7 @@ export default function DeleteCardModal({isOpen, setIsOpenModal}){
     style={customStyles}>   
     <div>
         <p>Desea eliminar el contacto?</p>
-        <button onClick={e=>handleDelete(false)}>Yes</button>
+        <button onClick={e=>handleDelete()}>Yes</button>
         <button onClick={e=>setIsOpenModal(false)}>No</button>
     </div>
   </Modal>)
