@@ -15,7 +15,7 @@ const customStyles = {
     }
   };
 
-export default function DeleteCardModal({isOpen, setIsOpenModal, contactId}){
+export default function DeleteCardModal({deleteModal, setDeleteModal, contactId}){
 
   const router = useRouter();
 
@@ -29,13 +29,13 @@ export default function DeleteCardModal({isOpen, setIsOpenModal, contactId}){
   };
 
   return(<Modal 
-    isOpen={isOpen}
-    onRequestClose={setIsOpenModal}
+    isOpen={deleteModal}
+    onRequestClose={setDeleteModal}
     style={customStyles}>   
     <div>
         <p>Desea eliminar el contacto?</p>
         <button onClick={e=>handleDelete()}>Yes</button>
-        <button onClick={e=>setIsOpenModal(false)}>No</button>
+        <button onClick={e=>setDeleteModal(false)}>No</button>
     </div>
   </Modal>)
 };

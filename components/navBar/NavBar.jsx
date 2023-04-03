@@ -22,10 +22,13 @@ export default function NavBar(){
         .catch(err=>console.log(err));
     };
 
-    return(<div>
-        {auth ? <button onClick={closeSession}>Sing Out</button>: <></>}
-        <Link href={'/contacts'} className={styles.link}>Contacts</Link> 
-        <Link href={'/contacts/form'} className={styles.link}>New contact</Link>
-        <Link href={'/contacts/about'} className={styles.link}>About</Link>
+    return(<div className={styles.navbar}>
+
+        <Link href={'/contacts'} className={styles.links}>Contacts</Link> 
+        <Link href={'/contacts/form'} className={styles.links}>New contact</Link>
+        <Link href={'/contacts/about'} className={styles.links}>About</Link>
+       
+        {auth ? <button onClick={closeSession} className={styles.exitBtn}>Sing Out</button>: <></>}
+        
     </div>);
 };

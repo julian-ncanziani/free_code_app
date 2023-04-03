@@ -1,0 +1,33 @@
+.editModal {
+    display: flex;
+    flex-direction: column;
+}
+
+.editBtn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+  font-size: 1rem;
+}
+
+.editBtn:hover{
+  color: rgba(0, 0, 0, 0.431);
+}
+
+.modalBtn{
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: black;
+  cursor: pointer;
+}
+
+.modalBtn:hover {
+  background-color: #20202094;
+}
+  

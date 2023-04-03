@@ -17,6 +17,7 @@ const firebaseConfig = {
 
 // Initialize Cloud Firestore and get a reference to the service
 export const app = initializeApp(firebaseConfig);
+
 /**
 * @constant db: Tengo que importar la base de datos aunque depsues no la temrine usando epxlicitamente en el codigo
  */

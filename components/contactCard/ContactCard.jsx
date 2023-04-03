@@ -2,14 +2,19 @@ import styles from './ContactCard.module.css';
 import { useState, useEffect } from 'react';
 //componentes
 import DeleteCardModal from '../deleteCard/DeleteCardModal';
+import EditCardModal from '../editCardModal/editCardModal';
 //react icons
 import { BsFillTrashFill, BsFillPenFill} from 'react-icons/bs'
 
 export default function ContactCard({contact}){
 
-    const [isOpenModal, setIsOpenModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
     
 
+    function editModalHandle(){
+        console.log('edit modal');
+    }
     return(<div className={styles.cardContact}> 
         <div>
             <p className={styles.cardContactTitle}>{contact.name} {contact.lastName}</p>
@@ -29,12 +34,16 @@ export default function ContactCard({contact}){
             </span>
         </div>
         <span className={styles.span}>
-            <BsFillPenFill/>
-            <BsFillTrashFill className={styles.svgDelete} onClick={(e)=>setIsOpenModal(true)}/>
+            <BsFillPenFill onClick={(e)=>setEditModal(true)}/>
+            <BsFillTrashFill className={styles.svgDelete} onClick={(e)=>setDeleteModal(true)}/>
         </span>
+        <EditCardModal
+            editModal={editModal}
+            setEditModal={setEditModal}
+            contact={contact}/>
         <DeleteCardModal 
-            isOpen={isOpenModal} 
-            setIsOpenModal={setIsOpenModal} 
+            deleteModal={deleteModal} 
+            setDeleteModal={setDeleteModal} 
             contactId={contact.id}
             />
     </div>)

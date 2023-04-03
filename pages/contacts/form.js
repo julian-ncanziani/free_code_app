@@ -8,13 +8,17 @@ import { useState, useEffect } from "react";
 import NavBar from "@/components/navBar/NavBar";
 //firebase dependencies
 import { db } from "@/server/firebase"
-import { collection, addDoc } from "firebase/firestore"
+import { collection, addDoc, getDocs } from "firebase/firestore"
 import { getAuth } from 'firebase/auth';
+
+import {useAuthState} from 'react-firebase-hooks/auth';
 
 
 export default function Form(){
 
     const router = useRouter();
+    const auth = getAuth();
+    const [user, loading, ] = useAuthState(auth);
     const [contact, setNewContact] = useState({
         name: '',
         lastName:'',
@@ -23,7 +27,7 @@ export default function Form(){
     });
 
     useEffect(() => {
-        const auth = getAuth();
+        //const auth = getAuth();
         if(!auth.currentUser){
             router.push('/');
         }
@@ -37,8 +41,8 @@ export default function Form(){
 
     async function handleClick(){
         try {
-            await addDoc(collection(db,'contacts'),{contact });
-            router.push('http://localhost:3000/contacts');
+            await addDoc(collection(db,'contacts'),{...contact, userId: auth.currentUser.uid});
+            router.push('/contacts');
         } catch (error) {
             console.log(error);
         }
