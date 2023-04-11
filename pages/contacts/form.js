@@ -52,7 +52,7 @@ export default function Form(){
         <div className={styles.form}>
             <p>New contact</p>
             <input placeholder="name" onChange={(e)=> handleChange(e)} id='name' className={styles.formInput}></input>
-            <input placeholder="lastmName" onChange={(e)=> handleChange(e)} id='lastName' className={styles.formInput}></input>
+            <input placeholder="lastName" onChange={(e)=> handleChange(e)} id='lastName' className={styles.formInput}></input>
             <input placeholder="age" onChange={(e)=> handleChange(e)} id='age' className={styles.formInput}></input>
             <input placeholder="address" onChange={(e)=> handleChange(e)} id='address' className={styles.formInput}></input>
             <button onClick={()=>handleClick()} className={styles.formSubmit}>Send data</button>

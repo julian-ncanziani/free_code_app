@@ -1,7 +1,10 @@
 import Modal from 'react-modal';
 import styles from './EditCardModal.module.css';
+import {useState } from 'react';
+import { db } from '@/server/firebase';
+import { doc, setDoc} from 'firebase/firestore';
+import { useRouter } from 'next/router';
 Modal.setAppElement('#__next');
-import { useEffect, useState } from 'react';
 
 const customStyles = {
     content : {
@@ -17,7 +20,7 @@ const customStyles = {
 export default function EditCardModal({setEditModal, editModal, contact}){
   
     console.log(contact);
-    
+    const router = useRouter();
     const [data, setData] = useState({
       name: contact.name,
       lastName: contact.lastName,
@@ -45,7 +48,6 @@ export default function EditCardModal({setEditModal, editModal, contact}){
     };
 
     function handleInput(event){
-      console.log(event.target.value);
       setData({
         ...data, [event.target.id]: event.target.value
       });
@@ -59,6 +61,18 @@ export default function EditCardModal({setEditModal, editModal, contact}){
         address: contact.address
       });
       setEditModal(false);
+    };
+
+    async function handleSave(){
+      try {
+        const docRef = await doc(db, 'contacts', contact.id);
+        await setDoc(docRef, {...data}, {merge: true});
+        setEditModal(false);
+        router.reload();
+      } catch (error) {
+        console.log(error);
+      }
+      
     };
 
     return(<Modal
@@ -147,7 +161,7 @@ export default function EditCardModal({setEditModal, editModal, contact}){
           </div>
           <div>
             <button onClick={(e)=>onCloseModal()} className={styles.modalBtn}>Close without Save</button>
-            <button className={styles.modalBtn}>Save Changes</button>
+            <button className={styles.modalBtn} onClick={(e)=>handleSave()}>Save Changes</button>
           </div>
         </div>
     </Modal>);
