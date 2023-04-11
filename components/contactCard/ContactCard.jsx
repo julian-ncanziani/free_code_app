@@ -1,8 +1,8 @@
 import styles from './ContactCard.module.css';
 import { useState, useEffect } from 'react';
 //componentes
-import DeleteCardModal from '../deleteCard/DeleteCardModal';
-import EditCardModal from '../editCardModal/editCardModal';
+import DeleteCardModal from '../deleteCard/DeleteCardModal.jsx';
+import EditCardModal from '../editCardModal/editCardModal.jsx';
 //react icons
 import { BsFillTrashFill, BsFillPenFill} from 'react-icons/bs'
 
