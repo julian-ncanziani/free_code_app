@@ -2,7 +2,7 @@ import styles from './ContactCard.module.css';
 import { useState, useEffect } from 'react';
 //componentes
 import DeleteCardModal from '../deleteCard/DeleteCardModal.jsx';
-import EditCardModal from '../editCardModal/editCardModal.jsx';
+import EditCardModal from '../editCardModal/EditCardModal.jsx';
 //react icons
 import { BsFillTrashFill, BsFillPenFill} from 'react-icons/bs'
 
@@ -12,9 +12,7 @@ export default function ContactCard({contact}){
     const [editModal, setEditModal] = useState(false);
     
 
-    function editModalHandle(){
-        console.log('edit modal');
-    }
+    
     return(<div className={styles.cardContact}> 
         <div>
             <p className={styles.cardContactTitle}>{contact.name} {contact.lastName}</p>
