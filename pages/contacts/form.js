@@ -18,7 +18,7 @@ export default function Form(){
 
     const router = useRouter();
     const auth = getAuth();
-    const [user, loading] = useAuthState(auth);
+    //const [user, loading] = useAuthState(auth);
     const [contact, setNewContact] = useState({
         name: '',
         lastName:'',
